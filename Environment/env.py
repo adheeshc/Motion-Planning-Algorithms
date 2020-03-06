@@ -6,7 +6,7 @@
 # | | | | (_| | | | |  __/  __/\__ \ | | |
 # \_| |_/\__,_|_| |_|\___|\___||___/_| |_|
 # Date:   2020-03-05 15:28:04
-# Last Modified time: 2020-03-06 01:56:25
+# Last Modified time: 2020-03-06 02:18:12
 
 import numpy as np
 import math
@@ -25,43 +25,62 @@ class Environment():
 
 	def grid_map(self):
 		obs_x, obs_y = [], []
+		ox,oy=[],[]
+		for i in range(60):
+			ox.append(i)
+			oy.append(0.0)
+		for i in range(60):
+			ox.append(60.0)
+			oy.append(i)
+		for i in range(61):
+			ox.append(i)
+			oy.append(60.0)
+		for i in range(61):
+			ox.append(0.0)
+			oy.append(i)
+		for i in range(40):
+			ox.append(20.0)
+			oy.append(i)
+		for i in range(40):
+			ox.append(40.0)
+			oy.append(60.0 - i)
 		
-		for i in range(0,self.map_x+1):	#lower and upper Walls
-			obs_x.append(i)
-			obs_y.append(0)
+		# for i in range(0,self.map_x+1):	#lower and upper Walls
+		# 	obs_x.append(i)
+		# 	obs_y.append(0)
 
-			obs_x.append(i)
-			obs_y.append(self.map_y)
+		# 	obs_x.append(i)
+		# 	obs_y.append(self.map_y)
 
-		for j in range(0,self.map_y+1):	#left and right walls
-			obs_x.append(0)
-			obs_y.append(j)
+		# for j in range(0,self.map_y+1):	#left and right walls
+		# 	obs_x.append(0)
+		# 	obs_y.append(j)
 
-			obs_x.append(self.map_x)
-			obs_y.append(j)
+		# 	obs_x.append(self.map_x)
+		# 	obs_y.append(j)
 
-		if self.map_x>self.map_y:
-			for i in range(int(self.map_x*(1/3))):	#first wall
-				obs_x.append(self.map_x*(1/3))
-				obs_y.append(i)
-			for j in range(int(self.map_x*(1/3))):	#second wall
-			 	obs_x.append(self.map_x*(2/3))
-			 	obs_y.append(self.map_y-j)
-		elif self.map_x==self.map_y:
-			for i in range(int(self.map_x*(2/3))):	#first wall
-				obs_x.append(self.map_x*(1/3))
-				obs_y.append(i)
-			for j in range(int(self.map_x*(2/3))):	#second wall
-			 	obs_x.append(self.map_x*(2/3))
-			 	obs_y.append(self.map_y-j)
-		else:
-			for i in range(int(self.map_y*(2/3))):	#first wall
-				obs_x.append(self.map_x*(1/3))
-				obs_y.append(i)
-			for j in range(int(self.map_y*(2/3))):	#second wall
-			 	obs_x.append(self.map_x*(2/3))
-			 	obs_y.append(self.map_y-j)
-		return obs_x,obs_y
+		# if self.map_x>self.map_y:
+		# 	for i in range(int(self.map_x*(1/3))):	#first wall
+		# 		obs_x.append(self.map_x*(1/3))
+		# 		obs_y.append(i)
+		# 	for j in range(int(self.map_x*(1/3))):	#second wall
+		# 	 	obs_x.append(self.map_x*(2/3))
+		# 	 	obs_y.append(self.map_y-j)
+		# elif self.map_x==self.map_y:
+		# 	for i in range(int(self.map_x*(2/3))):	#first wall
+		# 		obs_x.append(self.map_x*(1/3))
+		# 		obs_y.append(i)
+		# 	for j in range(int(self.map_x*(2/3))):	#second wall
+		# 	 	obs_x.append(self.map_x*(2/3))
+		# 	 	obs_y.append(self.map_y-j)
+		# else:
+		# 	for i in range(int(self.map_y*(2/3))):	#first wall
+		# 		obs_x.append(self.map_x*(1/3))
+		# 		obs_y.append(i)
+		# 	for j in range(int(self.map_y*(2/3))):	#second wall
+		# 	 	obs_x.append(self.map_x*(2/3))
+		# 	 	obs_y.append(self.map_y-j)
+		return ox,oy
 	
 	def obstacle_map(self):
 
