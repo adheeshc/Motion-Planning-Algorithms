@@ -6,7 +6,7 @@
 # | | | | (_| | | | |  __/  __/\__ \ | | |
 # \_| |_/\__,_|_| |_|\___|\___||___/_| |_|
 # Date:   2020-03-06 12:49:18
-# Last Modified time: 2020-03-06 12:55:06
+# Last Modified time: 2020-03-06 14:17:25
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -30,12 +30,4 @@ env=Environment(grid,resolution,robot_size)
 obs_x,obs_y=env.grid_map()
 
 d=A_star(grid,start_x,start_y,goal_x,goal_y,resolution,robot_size)
-
-plt.plot(obs_x, obs_y, ".k")
-plt.plot(start_x, start_y, "xr")
-plt.plot(goal_x, goal_y, "xb")
-plt.grid(True)
-plt.axis("equal")
-rx,ry=d.algorithm()
-plt.plot(rx, ry, "-r")
-plt.show()
+d.plot()

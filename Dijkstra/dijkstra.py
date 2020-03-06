@@ -6,7 +6,7 @@
 # | | | | (_| | | | |  __/  __/\__ \ | | |
 # \_| |_/\__,_|_| |_|\___|\___||___/_| |_|
 # Date:   2020-03-05 15:28:04
-# Last Modified time: 2020-03-06 12:56:46
+# Last Modified time: 2020-03-06 14:29:59
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -29,17 +29,17 @@ class Dijkstra():
 		self.res=resolution
 		self.rs=robot_size
 
+		self.env=Environment(grid_size,self.res,self.rs)
+		self.obs_x,self.obs_y=self.env.grid_map()
+
 	def algorithm(self):
 	    
 	    n_start = Node(round(self.sx / self.res), round(self.sy / self.res), 0.0, -1)
 	    n_goal = Node(round(self.gx / self.res), round(self.gy / self.res), 0.0, -1)
 
-	    grid=[self.map_x,self.map_y]
-	    env=Environment(grid,self.res,self.rs)
-	    ob_map=env.obstacle_map()
+	    ob_map=self.env.obstacle_map()
 	    motion = motion_model()
-	    self.obs_x,self.obs_y=env.grid_map()
-
+	    
 	    open_list, close_list = {}, {}
 	    open_list[self.calc_index(n_start, self.map_x, 0, 0)] = n_start
 	    
@@ -47,9 +47,9 @@ class Dijkstra():
 	    	c_id = min(open_list, key=lambda o: open_list[o].cost)
 	    	current = open_list[c_id]
 	    	
-	    	plt.plot(current.x * self.res, current.y * self.res, "xc")
-	    	if len(close_list.keys()) % 10 == 0:
-	    		plt.pause(0.001)
+	    	plt.plot(current.x * self.res, current.y * self.res, "oy",zorder=1)
+	    	if len(close_list.keys()) % 20 == 0:
+	    		plt.pause(0.01)
 
 	    	if current.x == n_goal.x and current.y == n_goal.y:
 	    		print("Found goal")
@@ -113,3 +113,13 @@ class Dijkstra():
 			ry.append(n.y*res)
 			ind=n.ind
 		return rx,ry
+
+	def plot(self):
+		plt.plot(self.obs_x, self.obs_y, ".k")
+		plt.plot(self.sx, self.sy, "og",zorder=4)
+		plt.plot(self.gx, self.gy, "or",zorder=3)
+		plt.grid(True)
+		plt.axis("equal")
+		rx,ry=self.algorithm()
+		plt.plot(rx, ry, "-b",zorder=2)
+		plt.show()
