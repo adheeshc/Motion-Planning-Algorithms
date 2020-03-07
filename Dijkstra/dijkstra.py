@@ -6,7 +6,7 @@
 # | | | | (_| | | | |  __/  __/\__ \ | | |
 # \_| |_/\__,_|_| |_|\___|\___||___/_| |_|
 # Date:   2020-03-05 15:28:04
-# Last Modified time: 2020-03-06 14:29:59
+# Last Modified time: 2020-03-06 23:04:54
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -42,7 +42,7 @@ class Dijkstra():
 	    
 	    open_list, close_list = {}, {}
 	    open_list[self.calc_index(n_start, self.map_x, 0, 0)] = n_start
-	    
+
 	    while True:
 	    	c_id = min(open_list, key=lambda o: open_list[o].cost)
 	    	current = open_list[c_id]
@@ -58,11 +58,9 @@ class Dijkstra():
 	    		break
 
 	    	
-	    	del open_list[c_id]			# Remove the item from the open set
-	    	
-	    	close_list[c_id] = current	# Add it to the closed set
+	    	del open_list[c_id]
+	    	close_list[c_id] = current
 
-	    	# expand search grid based on motion model
 	    	for i, j in enumerate(motion):
 	    		node = Node(current.x + motion[i][0],
 	    			current.y + motion[i][1],
@@ -84,11 +82,6 @@ class Dijkstra():
 
 	def calc_index(self,node,xwidth,xmin,ymin):
 		return (node.y-ymin)*xwidth + (node.x-xmin)
-
-	def calc_heuristic(self,n1,n2):
-		w=1.0
-		d=w*math.sqrt((n1.x-n2.x)**2+(n1.y-n2.y)**2)
-		return d
 
 	def verify_node(self,node,ob_map,x_min,y_min,x_max,y_max):
 		if node.x<x_min:
