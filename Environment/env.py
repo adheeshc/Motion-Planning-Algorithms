@@ -6,7 +6,7 @@
 # | | | | (_| | | | |  __/  __/\__ \ | | |
 # \_| |_/\__,_|_| |_|\___|\___||___/_| |_|
 # Date:   2020-03-05 15:28:04
-# Last Modified time: 2020-03-15 21:05:34
+# Last Modified time: 2020-03-16 03:12:54
 
 import numpy as np
 import math
@@ -14,7 +14,7 @@ import copy
 import matplotlib.pyplot as plt
 
 class Environment():
-	def __init__(self,grid,resolution,robot_size):
+	def __init__(self,grid,resolution=1,robot_size=1):
 		self.map_x=grid[0]
 		self.map_y=grid[1]
 		self.res=resolution
