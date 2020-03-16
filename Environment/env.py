@@ -6,7 +6,7 @@
 # | | | | (_| | | | |  __/  __/\__ \ | | |
 # \_| |_/\__,_|_| |_|\___|\___||___/_| |_|
 # Date:   2020-03-05 15:28:04
-# Last Modified time: 2020-03-06 13:04:01
+# Last Modified time: 2020-03-15 21:05:34
 
 import numpy as np
 import math
@@ -62,7 +62,7 @@ class Environment():
 			 	obs_y.append(self.map_y-j)
 		return obs_x,obs_y
 	
-	def obstacle_map(self):
+	def obstacle_wall(self):
 
 		obs_x,obs_y=self.grid_map()
 		obs_x = [i / self.res for i in obs_x]
@@ -79,6 +79,9 @@ class Environment():
 						#ob_map[i][j]=0
 						break
 		return ob_map
+	
+	def obstacle_objects(self):
+		pass
 
 	def show_map(self):
 		obs_x,obs_y=self.grid_map()

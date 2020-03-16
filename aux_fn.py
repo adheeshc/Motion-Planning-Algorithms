@@ -6,12 +6,12 @@
 # | | | | (_| | | | |  __/  __/\__ \ | | |
 # \_| |_/\__,_|_| |_|\___|\___||___/_| |_|
 # Date:   2020-03-05 18:57:43
-# Last Modified time: 2020-03-06 12:31:06
+# Last Modified time: 2020-03-15 20:18:51
 
 import numpy as np
 
 class Node():
-	def __init__(self,x,y,cost,ind):
+	def __init__(self,x,y,cost=0,ind=0):
 		self.x=x
 		self.y=y
 		self.cost=cost
