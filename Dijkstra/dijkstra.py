@@ -6,7 +6,7 @@
 # | | | | (_| | | | |  __/  __/\__ \ | | |
 # \_| |_/\__,_|_| |_|\___|\___||___/_| |_|
 # Date:   2020-03-05 15:28:04
-# Last Modified time: 2020-03-06 23:04:54
+# Last Modified time: 2020-03-15 21:05:58
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -37,7 +37,7 @@ class Dijkstra():
 	    n_start = Node(round(self.sx / self.res), round(self.sy / self.res), 0.0, -1)
 	    n_goal = Node(round(self.gx / self.res), round(self.gy / self.res), 0.0, -1)
 
-	    ob_map=self.env.obstacle_map()
+	    ob_map=self.env.obstacle_wall()
 	    motion = motion_model()
 	    
 	    open_list, close_list = {}, {}
