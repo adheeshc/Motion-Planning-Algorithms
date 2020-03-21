@@ -6,7 +6,7 @@
 # | | | | (_| | | | |  __/  __/\__ \ | | |
 # \_| |_/\__,_|_| |_|\___|\___||___/_| |_|
 # Date:   2020-03-05 15:28:04
-# Last Modified time: 2020-03-16 05:01:13
+# Last Modified time: 2020-03-21 19:57:35
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -41,8 +41,6 @@ class RRT():
 		self.env=Environment(grid_size)
 		self.obs_x,self.obs_y=self.env.grid_map()
 
-		
-
 	def algorithm(self, display=False):
 
 		n_start = Node(round(self.sx / self.res), round(self.sy / self.res))
@@ -53,7 +51,6 @@ class RRT():
 		i=0
 		while True:
 			i+=1
-			#print(i)
 			#RANDOM SAMPLING
 			if random.randint(0,100)>self.sample_rate:
 				rnd=[random.uniform(self.min_rand,self.max_rand),random.uniform(self.min_rand,self.max_rand)]
@@ -90,7 +87,6 @@ class RRT():
 				print("Found goal")
 				break
 
-
 			#PLOT
 			# rnd_pts,=plt.plot(rnd[0], rnd[1], "^k")
 			# rnd_pts.set_visible(False)
@@ -122,10 +118,10 @@ class RRT():
 		for ox,oy in zip(self.obs_x,self.obs_y):
 			dx=node.x-ox
 			dy=node.y-oy
-			print(np.abs(dx))
-			if np.abs(dx)<=1 or np.abs(dy)<=1:
-				return False
-
+			d=np.sqrt(dx**2 + dy**2)
+			if ox>0 and oy>0:
+				if d<1:
+					return False
 
 		return True  # safe
 
@@ -148,33 +144,6 @@ class RRT():
 		plt.plot(self.gx, self.gy, "or",zorder=3)
 		plt.plot(self.obs_x, self.obs_y, ".k")
 
-		# for (ox, oy, size) in self.obstacleList:
-		#     plt.plot(ox, oy, "ok", ms=30 * size)
-
 		path=self.algorithm()
 		plt.plot([x for (x, y) in path], [y for (x, y) in path], '-b')
 		plt.show()
-
-if __name__=="__main__":
-
-	print("start " + __file__)
-	grid=[20,20]
-	start_x=0
-	start_y=0
-
-	goal_x=5
-	goal_y=10
-	resolution=1
-	robot_size=1
-	rand_area=[-2,15]
-	show_display = True
-	rrt=RRT(grid,start_x,start_y,goal_x,goal_y,rand_area)
-	
-	rrt.plot()
-	#path=rrt.algorithm(display=show_display)
-
-# if show_display: 
-# 	rrt.plot()
-# 	plt.plot([x for (x, y) in path], [y for (x, y) in path], '-b')
-# 	plt.grid(True)
-# 	plt.show()
