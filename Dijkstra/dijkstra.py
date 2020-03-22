@@ -6,7 +6,7 @@
 # | | | | (_| | | | |  __/  __/\__ \ | | |
 # \_| |_/\__,_|_| |_|\___|\___||___/_| |_|
 # Date:   2020-03-05 15:28:04
-# Last Modified time: 2020-03-15 21:05:58
+# Last Modified time: 2020-03-22 04:02:27
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -107,12 +107,15 @@ class Dijkstra():
 			ind=n.ind
 		return rx,ry
 
-	def plot(self):
+	def plot(self,record=False):
 		plt.plot(self.obs_x, self.obs_y, ".k")
 		plt.plot(self.sx, self.sy, "og",zorder=4)
 		plt.plot(self.gx, self.gy, "or",zorder=3)
 		plt.grid(True)
 		plt.axis("equal")
+		plt.title("Dijsktra")
+		if record:
+			plt.pause(5)
 		rx,ry=self.algorithm()
 		plt.plot(rx, ry, "-b",zorder=2)
 		plt.show()

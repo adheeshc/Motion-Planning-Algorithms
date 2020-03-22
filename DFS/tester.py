@@ -6,7 +6,7 @@
 # | | | | (_| | | | |  __/  __/\__ \ | | |
 # \_| |_/\__,_|_| |_|\___|\___||___/_| |_|
 # Date:   2020-03-06 12:55:29
-# Last Modified time: 2020-03-15 22:42:51
+# Last Modified time: 2020-03-22 03:50:56
 
 import sys
 sys.path.insert(0,'../')
@@ -18,7 +18,7 @@ grid=[60,60]
 start_x=5
 start_y=5
 goal_x=30
-goal_y=20
+goal_y=30
 resolution=1
 robot_size=1
 

@@ -6,7 +6,7 @@
 # | | | | (_| | | | |  __/  __/\__ \ | | |
 # \_| |_/\__,_|_| |_|\___|\___||___/_| |_|
 # Date:   2020-03-05 15:28:04
-# Last Modified time: 2020-03-15 21:06:20
+# Last Modified time: 2020-03-22 04:02:29
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -17,7 +17,7 @@ sys.path.insert(0,'../')
 from aux_fn import *
 from Environment.env import *
 
-class DFS():
+class BFS():
 	def __init__(self,grid_size,start_x,start_y,goal_x,goal_y,resolution,robot_size):
 		self.map_x=grid_size[0]
 		self.map_y=grid_size[1]
@@ -107,12 +107,15 @@ class DFS():
 			ind=n.ind
 		return rx,ry
 
-	def plot(self):
+	def plot(self,record=False):
 		plt.plot(self.obs_x, self.obs_y, ".k")
 		plt.plot(self.sx, self.sy, "og",zorder=4)
 		plt.plot(self.gx, self.gy, "or",zorder=3)
 		plt.grid(True)
 		plt.axis("equal")
+		plt.title("Breadth First Search")
+		if record:
+			plt.pause(5)
 		rx,ry=self.algorithm()
 		plt.plot(rx, ry, "-b",zorder=2)
 		plt.show()
