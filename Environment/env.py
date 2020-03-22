@@ -6,7 +6,7 @@
 # | | | | (_| | | | |  __/  __/\__ \ | | |
 # \_| |_/\__,_|_| |_|\___|\___||___/_| |_|
 # Date:   2020-03-05 15:28:04
-# Last Modified time: 2020-03-22 02:23:40
+# Last Modified time: 2020-03-22 02:37:21
 
 import numpy as np
 import math
@@ -24,64 +24,65 @@ class Environment():
 
 
 	def grid_map(self):
+		val=100
 		obs_x, obs_y = [], []
-		for i in range(0,500):	#lower and upper Walls
+		for i in range(0,val):	#lower and upper Walls
 			obs_y.append(0)
 			obs_y.append(self.map_y)
-		temp=np.linspace(0,self.map_x,num=500)
+		temp=np.linspace(0,self.map_x,num=val)
 		for i in temp:
 			obs_x.append(i)	
-		temp=np.linspace(0,self.map_x,num=500)
+		temp=np.linspace(0,self.map_x,num=val)
 		for i in temp:
 			obs_x.append(i)
 			
-		for j in range(0,500):	#left and right walls
+		for j in range(0,val):	#left and right walls
 			obs_x.append(0)
 			obs_x.append(self.map_x)
 		
-		temp=np.linspace(0,self.map_y,num=500)
+		temp=np.linspace(0,self.map_y,num=val)
 		for i in temp:
 			obs_y.append(i)
 		
-		temp=np.linspace(0,self.map_y,num=500)
+		temp=np.linspace(0,self.map_y,num=val)
 		for i in temp:
 			obs_y.append(i)
 			
 		if self.map_x>self.map_y:
-			for i in range(0,500):	#first wall
+			for i in range(0,val):	#first wall
 				obs_x.append(self.map_x*(1/3))
-			temp=np.linspace(0,self.map_x*(1/3),num=500)
+			temp=np.linspace(0,self.map_x*(1/3),num=val)
 			for i in temp:
 				obs_y.append(i)
 
-			for j in range(0,500):	#second wall
+			for j in range(0,val):	#second wall
 			 	obs_x.append(self.map_x*(2/3))
-			temp=np.linspace(self.map_y,self.map_y-self.map_y/3,num=500)
+			temp=np.linspace(self.map_y,self.map_y-self.map_y/3,num=val)
 			for i in temp:
 				obs_y.append(i)
 
 		elif self.map_x==self.map_y:
-			for i in range(0,500):	#first wall
+			for i in range(0,val):	#first wall
 				obs_x.append(self.map_x*(1/3))
-			temp=np.linspace(0,self.map_x*(2/3),num=500)
+			temp=np.linspace(0,self.map_x*(2/3),num=val)
 			for i in temp:
 				obs_y.append(i)
-			for j in range(0,500):	#second wall
+			for j in range(0,val):	#second wall
 			 	obs_x.append(self.map_x*(2/3))
-			temp=np.linspace(self.map_y,self.map_y-self.map_y*2/3,num=500)
+			temp=np.linspace(self.map_y,self.map_y-self.map_y*2/3,num=val)
 			for i in temp:
 				obs_y.append(i)
 
 		else:
-			for i in range(0,500):	#first wall
+			for i in range(0,val):	#first wall
 				obs_x.append(self.map_x*(1/3))
-			temp=np.linspace(0,self.map_x*(1/3),num=500)
+			temp=np.linspace(0,self.map_x*(1/3),num=val)
 			for i in temp:
 				obs_y.append(i)
 
-			for j in range(0,500):	#second wall
+			for j in range(0,val):	#second wall
 			 	obs_x.append(self.map_x*(2/3))
-			temp=np.linspace(self.map_y,self.map_y-self.map_y/3,num=500)
+			temp=np.linspace(self.map_y,self.map_y-self.map_y/3,num=val)
 			for i in temp:
 				obs_y.append(i)
 		return obs_x,obs_y
