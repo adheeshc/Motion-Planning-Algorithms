@@ -28,7 +28,7 @@
 ### Dijkstra Algorithm
 
 <p align="center">
-  <img src="/Images/dijktra.gif" alt="Dijkstra">
+  <img src="/Images/dijkstra.gif" alt="Dijkstra">
 </p>
 
 ### A Star Algorithm
