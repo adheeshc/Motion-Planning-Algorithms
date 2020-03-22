@@ -1,44 +1,57 @@
 # Path Planning Algorithms
 
+### Environment
+
+- ##Wall Env
+<p align="center">
+  <img src="/Images/wall_env.png" alt="wall">
+</p>
+
+- ##Obstacle Env
+<p align="center">
+  <img src="/Images/obstacle_env.png" alt="obstacle">
+</p>
+
+
 ### BFS (Breadth First Search)
 
 <p align="center">
-  <img src="/Images/bfs.png" alt="bfs">
+  <img src="/Images/bfs.gif" alt="bfs">
 </p>
 
 ### DFS (Depth First Search)
 
 <p align="center">
-  <img src="/Images/dfs.png" alt="DFS">
+  <img src="/Images/dfs.gif" alt="DFS">
 </p>
 
 ### Dijkstra Algorithm
 
 <p align="center">
-  <img src="/Images/dijsktra.png" alt="Dijkstra">
+  <img src="/Images/dijsktra.gif" alt="Dijkstra">
 </p>
 
 ### A Star Algorithm
 
 <p align="center">
-  <img src="/Images/a_star.png" alt="a_star">
+  <img src="/Images/a_star.gif" alt="a_star">
 </p>
 
 ### RRT (Rapidly Exploring Random Trees)
 
 <p align="center">
-  <img src="/Images/rrt.png" alt="rrt">
+  <img src="/Images/rrt.gif" alt="rrt">
 </p>
 
 ### RRT*
 
 <p align="center">
-  <img src="/Images/rrt_star.png" alt="rrt*">
+  <img src="/Images/rrt_star.gif" alt="rrt*">
 </p>
 
 ### PRM (Probabilistic Road Map)
 
 <p align="center">
-  <img src="/Images/prm.png" alt="prm">
+  <img src="/Images/prm.gif" alt="prm">
 </p>
 
