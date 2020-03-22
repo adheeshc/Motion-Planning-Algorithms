@@ -6,7 +6,7 @@
 # | | | | (_| | | | |  __/  __/\__ \ | | |
 # \_| |_/\__,_|_| |_|\___|\___||___/_| |_|
 # Date:   2020-03-05 15:28:04
-# Last Modified time: 2020-03-22 01:30:23
+# Last Modified time: 2020-03-22 02:26:32
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -49,8 +49,7 @@ class RRT():
 		self.node_list=[n_start] 
 		ob_map=self.env.obstacle_wall()
 		i=0
-		while True:
-			i+=1
+		for i in range(0,self.max_iter):
 			#RANDOM SAMPLING
 			rnd=self.get_random_point()
 			
@@ -73,8 +72,6 @@ class RRT():
 			#ADD NODE TO LIST
 			self.node_list.append(current)
 			print(f"nodes:{len(self.node_list)-1}")
-			if len(self.node_list)==1000:
-				break
 
 			#FIND GOAL
 			dx=current.x-self.gx
@@ -118,7 +115,6 @@ class RRT():
 			return False
 		if node.y>=ymax:
 			return False
-
 		for ox,oy in zip(self.obs_x,self.obs_y):
 			dx=node.x-ox
 			dy=node.y-oy
