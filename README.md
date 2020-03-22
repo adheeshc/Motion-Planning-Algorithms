@@ -2,12 +2,12 @@
 
 ### Environment
 
-- ##Wall Env
+- <b>Wall Env</b>
 <p align="center">
   <img src="/Images/wall_env.png" alt="wall">
 </p>
 
-- ##Obstacle Env
+- <b>Obstacle Env</b>
 <p align="center">
   <img src="/Images/obstacle_env.png" alt="obstacle">
 </p>
@@ -28,7 +28,7 @@
 ### Dijkstra Algorithm
 
 <p align="center">
-  <img src="/Images/dijsktra.gif" alt="Dijkstra">
+  <img src="/Images/dijktra.gif" alt="Dijkstra">
 </p>
 
 ### A Star Algorithm
