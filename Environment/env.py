@@ -6,7 +6,7 @@
 # | | | | (_| | | | |  __/  __/\__ \ | | |
 # \_| |_/\__,_|_| |_|\___|\___||___/_| |_|
 # Date:   2020-03-05 15:28:04
-# Last Modified time: 2020-03-22 02:37:21
+# Last Modified time: 2020-03-24 05:13:43
 
 import numpy as np
 import math
@@ -22,29 +22,29 @@ class Environment():
 		self.start_point=[5,4]
 		self.goal_point=[self.map_x-5,self.map_y-4]
 
-
 	def grid_map(self):
-		val=100
+		val=30
+		val2=50
 		obs_x, obs_y = [], []
-		for i in range(0,val):	#lower and upper Walls
+		for i in range(0,val2):	#lower and upper Walls
 			obs_y.append(0)
 			obs_y.append(self.map_y)
-		temp=np.linspace(0,self.map_x,num=val)
+		temp=np.linspace(0,self.map_x,num=val2)
 		for i in temp:
 			obs_x.append(i)	
-		temp=np.linspace(0,self.map_x,num=val)
+		temp=np.linspace(0,self.map_x,num=val2)
 		for i in temp:
 			obs_x.append(i)
 			
-		for j in range(0,val):	#left and right walls
+		for j in range(0,val2):	#left and right walls
 			obs_x.append(0)
 			obs_x.append(self.map_x)
 		
-		temp=np.linspace(0,self.map_y,num=val)
+		temp=np.linspace(0,self.map_y,num=val2)
 		for i in temp:
 			obs_y.append(i)
 		
-		temp=np.linspace(0,self.map_y,num=val)
+		temp=np.linspace(0,self.map_y,num=val2)
 		for i in temp:
 			obs_y.append(i)
 			
@@ -85,6 +85,7 @@ class Environment():
 			temp=np.linspace(self.map_y,self.map_y-self.map_y/3,num=val)
 			for i in temp:
 				obs_y.append(i)
+	
 		return obs_x,obs_y
 	
 	def obstacle_wall(self):
@@ -107,16 +108,24 @@ class Environment():
 		return ob_map
 	
 	def obstacle_objects(self):
-		pass
+		self.obstacle_list = [(5, 5, 1),
+						(3, 6, 2),
+						(3, 8, 2),
+						(3, 10, 2),
+						(7, 5, 2),
+						(9, 5, 2)]  # [x,y,size(radius)]
+		return self.obstacle_list
 
 	def show_map(self):
 		obs_x,obs_y=self.grid_map()
 		ob_map=self.obstacle_wall()
 		
-		plt.scatter(obs_x,obs_y,c='k')
-		plt.scatter(self.start_point[0],self.start_point[1],c='g')
-		plt.scatter(self.goal_point[0],self.goal_point[1],c='r')
-
-		#plt.scatter(self.algo_path,c='b')
-		#plt.scatter(self.path,c='y')
+		#plt.scatter(obs_x,obs_y,c='k')
+		# plt.scatter(self.start_point[0],self.start_point[1],c='g')
+		# plt.scatter(self.goal_point[0],self.goal_point[1],c='r')
+		ob_obj=self.obstacle_objects()
+		
+		for (ox, oy, size) in ob_obj:
+			plt.plot(ox, oy, "ok", ms=30 * size)
+		plt.axis([-2,15,-2,15])
 		plt.show()

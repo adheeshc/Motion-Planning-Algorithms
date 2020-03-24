@@ -5,16 +5,5 @@
 # |  _  |/ _` | '_ \ / _ \/ _ \/ __| '_ \ 
 # | | | | (_| | | | |  __/  __/\__ \ | | |
 # \_| |_/\__,_|_| |_|\___|\___||___/_| |_|
-# Date:   2020-03-05 16:27:57
-# Last Modified time: 2020-03-24 05:04:08
-
-from env import *
-
-if __name__=="__main__":
-	#grid=[30,15]
-	#grid=[15,30]
-	grid=[20,20]
-	res=1
-	rob_size=1
-	env=Environment(grid,res,rob_size)
-	env.show_map()
+# Date:   2020-03-24 04:07:53
+# Last Modified time: 2020-03-24 04:07:53
