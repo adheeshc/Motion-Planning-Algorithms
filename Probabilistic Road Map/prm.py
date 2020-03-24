@@ -6,7 +6,7 @@
 # | | | | (_| | | | |  __/  __/\__ \ | | |
 # \_| |_/\__,_|_| |_|\___|\___||___/_| |_|
 # Date:   2020-03-05 15:28:04
-# Last Modified time: 2020-03-24 02:43:58
+# Last Modified time: 2020-03-24 03:22:42
 
 import numpy as np
 import matplotlib.pyplot as plt
@@ -39,12 +39,13 @@ class PRM():
 		self.env=Environment(grid_size)
 		self.obs_x,self.obs_y=self.env.grid_map()
 
-	def algorithm(self,):
+	def algorithm(self):
 		obstacles=np.vstack((self.obs_x,self.obs_y)).T
 		ob_tree=KDTree(obstacles)
 
 		sample_x,sample_y=self.sample_points(self.sx,self.sy,self.gx,self.gy,self.rs,self.obs_x,self.obs_y,ob_tree)
 		plt.plot(sample_x, sample_y, ".b")
+		sample_text=plt.text(self.map_x/2-10,65,"Now finding path...")
 
 		road_map=self.generate_roadmap(sample_x,sample_y,self.rs,ob_tree)
 
@@ -118,10 +119,14 @@ class PRM():
 				sample_x.append(temp_x)
 				sample_y.append(temp_y)
 
+			if len(sample_x)%10==0:
+				plt.plot(sample_x,sample_y,".b")
+				plt.pause(0.0001)
+
 		sample_x.append(sx)
 		sample_y.append(sy)
 		sample_x.append(gx)
-		sample_y.append(gy)
+		sample_y.append(gy)		
 
 		return sample_x,sample_y
 
@@ -192,14 +197,15 @@ class PRM():
 
 
 	def plot(self,record=False):
-		plt.plot(self.obs_x, self.obs_y, ".k")
-		plt.plot(self.sx, self.sy, "og",zorder=4)
-		plt.plot(self.gx, self.gy, "or",zorder=3)
-		plt.grid(True)
-		plt.axis("equal")
+		fig, ax = plt.subplots(1,1)
+		ax.plot(self.obs_x, self.obs_y, ".k")
+		ax.plot(self.sx, self.sy, "og",zorder=4)
+		ax.plot(self.gx, self.gy, "or",zorder=3)
+		ax.grid(True)
+		ax.axis([-10,self.map_x+10,-5,self.map_y+10])
 		plt.title("Probabilistic Road Map")
 		if record:
 			plt.pause(5)
 		rx,ry=self.algorithm()
-		plt.plot(rx, ry, "-b",zorder=2)
+		ax.plot(rx, ry, "-r",zorder=2)
 		plt.show()
